@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Character Selection by Stuyk</title>
+        <link rel="stylesheet" type="text/css" href="../../css/vuetify.min.css" />
+        <link rel="stylesheet/less" type="text/css" href="./style.less" />
+        <link rel="stylesheet" type="text/css" href="../../icomoon/style.css" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+        />
+    </head>
+    <body>
+        <div id="app">
+            <v-app>
+                <v-container class="panel pl-0 pt-0 fill-height transparent">
+                    <div class="special-bar d-flex flex-column justify-space-between fill-height grey darken-4">
+                        <v-navigation-drawer permanent expand-on-hover class="grey darken-4">
+                            <v-list>
+                                <v-list-item
+                                    right
+                                    v-for="(option, index) in navOptions"
+                                    :key="index"
+                                    link
+                                    @click="goNavigate(index)"
+                                    :disabled="!validInfoData && index === navOptions.length - 1"
+                                >
+                                    <template v-if="index !== navOptions.length - 1">
+                                        <v-list-item-icon>
+                                            <v-icon class="light-blue--text text--accent-2"
+                                                >{{ navOptionsIcons[index].icon }}</v-icon
+                                            >
+                                        </v-list-item-icon>
+                                        <v-list-item-title class="light-blue--text text--accent-1">
+                                            {{ navOptionsTitles[index] }}
+                                        </v-list-item-title>
+                                    </template>
+                                    <template v-else>
+                                        <v-list-item-icon>
+                                            <v-icon
+                                                :class="validInfoData ? 'green--text text--accent-2' : ''"
+                                                :disabled="!validInfoData"
+                                                >{{ navOptionsIcons[index].icon }}</v-icon
+                                            >
+                                        </v-list-item-icon>
+                                        <v-list-item-title
+                                            :class="validInfoData ? 'green--text text--accent-2' : ''"
+                                            :disabled="!validInfoData"
+                                        >
+                                            {{ navOptionsTitles[index] }}
+                                        </v-list-item-title>
+                                    </template>
+                                </v-list-item>
+                            </v-list>
+                        </v-navigation-drawer>
+                    </div>
+                    <v-sheet
+                        class="special-box d-flex flex-row pl-0 pr-0 align-content-center grey darken-4"
+                        max-height="100vh"
+                        min-height="100vh"
+                        max-width="400px"
+                    >
+                        <component
+                            v-bind:is="getTabComponent"
+                            v-bind:data="data"
+                            v-bind:nodiscard="noDiscard"
+                            v-bind:noname="noName"
+                            v-bind:currentname="data.name"
+                            v-bind:infodata="infoData"
+                            v-bind:totalcharacters="totalCharacters"
+                        >
+                        </component>
+                    </v-sheet>
+                </v-container>
+            </v-app>
+        </div>
+        <script src="../../js/vue.min.js"></script>
+        <script src="../../js/vuetify.js"></script>
+        <script src="../../js/less.min.js"></script>
+        <script src="./utility/hairInfo.js"></script>
+        <script src="./utility/hairOverlays.js"></script>
+        <script src="./utility/structure.js"></script>
+        <script src="./utility/faceNames.js"></script>
+        <script src="./utility/overlays.js"></script>
+        <script src="./utility/presets.js"></script>
+        <script src="./components/done.js" type="text/javascript"></script>
+        <script src="./components/info.js" type="text/javascript"></script>
+        <script src="./components/overlays.js" type="text/javascript"></script>
+        <script src="./components/decor.js" type="text/javascript"></script>
+        <script src="./components/hair.js" type="text/javascript"></script>
+        <script src="./components/structure.js" type="text/javascript"></script>
+        <script src="./components/sex.js" type="text/javascript"></script>
+        <script src="./app.js" type="text/javascript"></script>
+    </body>
+</html>
